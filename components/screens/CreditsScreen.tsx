@@ -2,6 +2,7 @@
 
 import { FC } from 'react';
 import { useGameStore } from '@/store/gameStore';
+import packageJson from '@/package.json';
 
 export const CreditsScreen: FC = () => {
   const { resetGame } = useGameStore();
@@ -137,6 +138,11 @@ export const CreditsScreen: FC = () => {
               <ruby>配信<rt>はいしん</rt></ruby><ruby>情報<rt>じょうほう</rt></ruby>
             </h2>
             <div className="text-center">
+              <div className="mb-4">
+                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                  Version {packageJson.version}
+                </span>
+              </div>
               <p className="text-gray-600 mb-2">
                 Vercel <ruby>静的<rt>せいてき</rt></ruby>サイト<ruby>生成<rt>せいせい</rt></ruby> (SSG) による<ruby>高速<rt>こうそく</rt></ruby><ruby>配信<rt>はいしん</rt></ruby>
               </p>

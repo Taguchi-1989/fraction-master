@@ -355,11 +355,17 @@ function ResultScreen() {
   }, [score]);
 
   const getMessage = () => {
-    // 0/0の場合のバグ修正：問題に答えていない場合は特別なメッセージ
+    // 問題に答えていない場合は特別なメッセージ
     if (questionsAnswered === 0) {
       return 'ゲームを途中で終了しました。';
     }
     
+    // 正解数が0の場合（全問不正解）
+    if (correctAnswers === 0) {
+      return 'もう一度挑戦してみよう！';
+    }
+    
+    // 正答率ベースのメッセージ（正解数が1以上の場合のみ）
     if (accuracy >= 90) return '素晴らしい成績です！';
     if (accuracy >= 70) return 'よくできました！';
     if (accuracy >= 50) return 'がんばりました！';
