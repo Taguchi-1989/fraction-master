@@ -36,7 +36,7 @@ export interface WrongAnswer {
 }
 
 export interface GameState {
-  currentScreen: 'title' | 'levelSelect' | 'game' | 'result' | 'credits';
+  currentScreen: 'title' | 'levelSelect' | 'game' | 'result' | 'credits' | 'howToPlay';
   level: 'easy' | 'normal' | 'hard';
   score: number;
   currentQuestion: Question | null;

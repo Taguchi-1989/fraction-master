@@ -6,6 +6,7 @@ import { FractionCard } from '@/components/game/FractionCard';
 import { Timer } from '@/components/game/Timer';
 import { ReviewSection } from '@/components/game/ReviewSection';
 import { CreditsScreen } from '@/components/screens/CreditsScreen';
+import { HowToPlayScreen } from '@/components/screens/HowToPlayScreen';
 import { audioManager } from '@/lib/audio';
 import { useEffect, useState } from 'react';
 
@@ -22,6 +23,8 @@ export default function Home() {
     return <ResultScreen />;
   } else if (currentScreen === 'credits') {
     return <CreditsScreen />;
+  } else if (currentScreen === 'howToPlay') {
+    return <HowToPlayScreen />;
   }
 
   return <TitleScreen />;
@@ -123,13 +126,25 @@ function LevelSelectScreen() {
           ))}
         </div>
 
-        <div className="text-center mt-8">
-          <Button
-            variant="secondary"
-            onClick={() => useGameStore.setState({ currentScreen: 'title' })}
-          >
-            <ruby>戻<rt>もど</rt></ruby>る
-          </Button>
+        <div className="text-center mt-8 space-y-4">
+          <div>
+            <Button
+              variant="primary"
+              size="large"
+              onClick={() => useGameStore.setState({ currentScreen: 'howToPlay' })}
+              className="mr-4"
+            >
+              <ruby>遊<rt>あそ</rt></ruby>び<ruby>方<rt>かた</rt></ruby>
+            </Button>
+          </div>
+          <div>
+            <Button
+              variant="secondary"
+              onClick={() => useGameStore.setState({ currentScreen: 'title' })}
+            >
+              <ruby>戻<rt>もど</rt></ruby>る
+            </Button>
+          </div>
         </div>
       </div>
     </div>
