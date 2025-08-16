@@ -4,6 +4,8 @@ export class AudioManager {
   private static instance: AudioManager;
   private audioContext: AudioContext | null = null;
   private isEnabled: boolean = true;
+  private bgmAudio: HTMLAudioElement | null = null;
+  private isBgmPlaying: boolean = false;
 
   private constructor() {
     if (typeof window !== 'undefined') {
@@ -149,9 +151,51 @@ export class AudioManager {
     this.isEnabled = enabled;
   }
 
+  // BGM再生開始
+  playBGM() {
+    if (!this.isEnabled || this.isBgmPlaying) return;
+    
+    try {
+      if (!this.bgmAudio) {
+        this.bgmAudio = new Audio('/audio/music1.wav');
+        this.bgmAudio.loop = true;
+        this.bgmAudio.volume = 0.3; // 音量を低めに設定
+      }
+      
+      this.bgmAudio.play().then(() => {
+        this.isBgmPlaying = true;
+      }).catch(error => {
+        console.warn('BGMの再生に失敗しました:', error);
+      });
+    } catch (error) {
+      console.warn('BGMの初期化に失敗しました:', error);
+    }
+  }
+
+  // BGM停止
+  stopBGM() {
+    if (this.bgmAudio) {
+      this.bgmAudio.pause();
+      this.bgmAudio.currentTime = 0;
+      this.isBgmPlaying = false;
+    }
+  }
+
+  // BGM音量調整
+  setBGMVolume(volume: number) {
+    if (this.bgmAudio) {
+      this.bgmAudio.volume = Math.max(0, Math.min(1, volume));
+    }
+  }
+
   // 音声有効状態の取得
   isAudioEnabled(): boolean {
     return this.isEnabled;
+  }
+
+  // BGM再生状態の取得
+  isBGMPlaying(): boolean {
+    return this.isBgmPlaying;
   }
 }
 

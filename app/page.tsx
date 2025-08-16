@@ -4,7 +4,6 @@ import { useGameStore } from '@/store/gameStore';
 import { Button } from '@/components/ui/Button';
 import { FractionCard } from '@/components/game/FractionCard';
 import { Timer } from '@/components/game/Timer';
-import { ScoreBoard } from '@/components/game/ScoreBoard';
 import { ReviewSection } from '@/components/game/ReviewSection';
 import { CreditsScreen } from '@/components/screens/CreditsScreen';
 import { audioManager } from '@/lib/audio';
@@ -156,11 +155,41 @@ function GameScreen() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [feedbackState, setFeedbackState] = useState<'correct' | 'incorrect' | null>(null);
   const [hintCountdown, setHintCountdown] = useState(10);
+  const [bgmStarted, setBgmStarted] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(tickTimer, 1000);
     return () => clearInterval(timer);
   }, [tickTimer]);
+
+  // BGM再生開始（ゲーム開始時に一度だけ）
+  useEffect(() => {
+    if (!bgmStarted) {
+      // ユーザー操作後にBGMを開始（ブラウザの自動再生ポリシー対応）
+      const startBGM = () => {
+        audioManager.playBGM();
+        setBgmStarted(true);
+        // イベントリスナーを削除
+        document.removeEventListener('click', startBGM);
+        document.removeEventListener('keydown', startBGM);
+      };
+      
+      document.addEventListener('click', startBGM);
+      document.addEventListener('keydown', startBGM);
+      
+      return () => {
+        document.removeEventListener('click', startBGM);
+        document.removeEventListener('keydown', startBGM);
+      };
+    }
+  }, [bgmStarted]);
+
+  // ゲーム終了時にBGM停止
+  useEffect(() => {
+    return () => {
+      audioManager.stopBGM();
+    };
+  }, []);
 
   // ヒントカウントダウンの更新
   useEffect(() => {
