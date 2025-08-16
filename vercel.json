@@ -1,3 +1,4 @@
 {
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "alias": ["fraction-master.vercel.app"]
 }

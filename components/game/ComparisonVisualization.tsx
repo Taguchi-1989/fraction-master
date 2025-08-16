@@ -183,16 +183,6 @@ export const ComparisonVisualization: FC<ComparisonVisualizationProps> = ({
           </p>
         </div>
 
-        {/* 比較矢印 */}
-        <div className="flex flex-col items-center justify-center ml-4">
-          {selectedValue < correctValue ? (
-            <div className="text-4xl text-green-600">↑</div>
-          ) : selectedValue > correctValue ? (
-            <div className="text-4xl text-red-600">↑</div>
-          ) : (
-            <div className="text-4xl text-blue-600">=</div>
-          )}
-        </div>
       </div>
     );
   };
@@ -236,16 +226,6 @@ export const ComparisonVisualization: FC<ComparisonVisualizationProps> = ({
           </p>
         </div>
 
-        {/* 水位比較線 */}
-        <div className="flex flex-col items-center justify-center ml-4">
-          {selectedValue < correctValue ? (
-            <div className="text-4xl text-green-600">↑</div>
-          ) : selectedValue > correctValue ? (
-            <div className="text-4xl text-red-600">↑</div>
-          ) : (
-            <div className="text-4xl text-blue-600">=</div>
-          )}
-        </div>
       </div>
     );
   };
