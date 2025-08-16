@@ -355,6 +355,11 @@ function ResultScreen() {
   }, [score]);
 
   const getMessage = () => {
+    // 0/0の場合のバグ修正：問題に答えていない場合は特別なメッセージ
+    if (questionsAnswered === 0) {
+      return 'ゲームを途中で終了しました。';
+    }
+    
     if (accuracy >= 90) return '素晴らしい成績です！';
     if (accuracy >= 70) return 'よくできました！';
     if (accuracy >= 50) return 'がんばりました！';
@@ -384,7 +389,7 @@ function ResultScreen() {
                 <ruby>正解数<rt>せいかいすう</rt></ruby>
               </p>
               <p className="text-3xl font-bold text-green-600">
-                {correctAnswers} / {questionsAnswered}
+                {questionsAnswered > 0 ? `${correctAnswers} / ${questionsAnswered}` : '0 / 0'}
               </p>
             </div>
 
@@ -392,7 +397,9 @@ function ResultScreen() {
               <p className="text-blue-700 mb-2 text-lg font-semibold">
                 <ruby>正答率<rt>せいとうりつ</rt></ruby>
               </p>
-              <p className="text-3xl font-bold text-purple-600">{accuracy}%</p>
+              <p className="text-3xl font-bold text-purple-600">
+                {questionsAnswered > 0 ? `${accuracy}%` : '-'}
+              </p>
             </div>
 
             <div>

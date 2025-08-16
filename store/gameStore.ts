@@ -70,9 +70,10 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const isCorrect = currentQuestion.options[optionIndex].isCorrect;
     
     if (isCorrect) {
-      // 正解時の処理 - 10点固定
+      // 正解時の処理 - ヒント使用で5点、未使用で10点
+      const pointsEarned = isHintShown ? 5 : 10;
       set((state) => ({
-        score: state.score + 10,
+        score: state.score + pointsEarned,
         correctAnswers: state.correctAnswers + 1,
         questionsAnswered: state.questionsAnswered + 1,
         isHintShown: false,
