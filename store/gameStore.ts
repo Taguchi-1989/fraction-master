@@ -70,9 +70,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const isCorrect = currentQuestion.options[optionIndex].isCorrect;
     
     if (isCorrect) {
-      // 正解時の処理
+      // 正解時の処理 - 10点固定
       set((state) => ({
-        score: state.score + (isHintShown ? 5 : 10),
+        score: state.score + 10,
         correctAnswers: state.correctAnswers + 1,
         questionsAnswered: state.questionsAnswered + 1,
         isHintShown: false,

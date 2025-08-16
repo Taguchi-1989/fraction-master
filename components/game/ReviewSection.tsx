@@ -77,26 +77,56 @@ export const ReviewSection: FC<ReviewSectionProps> = ({ wrongAnswers }) => {
               ))}
             </div>
 
-            {/* 視覚的比較 */}
-            <ComparisonVisualization
-              selectedFraction={wrongAnswer.question.options[wrongAnswer.selectedAnswer].fraction}
-              correctFraction={wrongAnswer.question.options[wrongAnswer.correctAnswer].fraction}
-              visualType={wrongAnswer.question.options[wrongAnswer.selectedAnswer].visualType}
-            />
-
-            {wrongAnswer.question.hint && (
-              <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded p-3">
-                <p className="text-yellow-800 text-sm">
-                  💡 ヒント: {wrongAnswer.question.hint.messageWithRuby ? (
-                    <span dangerouslySetInnerHTML={{ 
-                      __html: wrongAnswer.question.hint.messageWithRuby 
-                    }} />
-                  ) : (
-                    wrongAnswer.question.hint.message
-                  )}
-                </p>
+            {/* 視覚的比較 - 問題タイプによって切り替え */}
+            {wrongAnswer.question.type === 'compare' ? (
+              <ComparisonVisualization
+                selectedFraction={wrongAnswer.question.options[wrongAnswer.selectedAnswer].fraction}
+                correctFraction={wrongAnswer.question.options[wrongAnswer.correctAnswer].fraction}
+                visualType={wrongAnswer.question.options[wrongAnswer.selectedAnswer].visualType}
+              />
+            ) : (
+              <div className="bg-white p-6 rounded-lg border-2 border-gray-300">
+                <h4 className="text-lg font-bold text-center mb-4 text-blue-900">
+                  <ruby>正解<rt>せいかい</rt></ruby>と<ruby>選択<rt>せんたく</rt></ruby>した<ruby>答<rt>こた</rt></ruby>え
+                </h4>
+                <div className="flex justify-center gap-8">
+                  <div className="text-center">
+                    <FractionCard
+                      fraction={wrongAnswer.question.options[wrongAnswer.selectedAnswer].fraction}
+                      visualType={wrongAnswer.question.options[wrongAnswer.selectedAnswer].visualType}
+                      onSelect={() => {}}
+                      showVisual={true}
+                      isIncorrect={true}
+                    />
+                    <p className="mt-2 text-red-600 font-semibold">
+                      あなたの<ruby>選択<rt>せんたく</rt></ruby>
+                    </p>
+                    <p className="text-lg font-bold text-red-600">
+                      {wrongAnswer.question.options[wrongAnswer.selectedAnswer].fraction.numerator}/
+                      {wrongAnswer.question.options[wrongAnswer.selectedAnswer].fraction.denominator}
+                    </p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <FractionCard
+                      fraction={wrongAnswer.question.options[wrongAnswer.correctAnswer].fraction}
+                      visualType={wrongAnswer.question.options[wrongAnswer.correctAnswer].visualType}
+                      onSelect={() => {}}
+                      showVisual={true}
+                      isCorrect={true}
+                    />
+                    <p className="mt-2 text-green-600 font-semibold">
+                      <ruby>正解<rt>せいかい</rt></ruby>
+                    </p>
+                    <p className="text-lg font-bold text-green-600">
+                      {wrongAnswer.question.options[wrongAnswer.correctAnswer].fraction.numerator}/
+                      {wrongAnswer.question.options[wrongAnswer.correctAnswer].fraction.denominator}
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
+
           </div>
         ))}
       </div>
