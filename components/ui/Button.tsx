@@ -1,7 +1,6 @@
 'use client';
 
 import { ButtonHTMLAttributes, FC } from 'react';
-import { motion } from 'framer-motion';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'success' | 'hint';
@@ -29,18 +28,17 @@ export const Button: FC<ButtonProps> = ({
   ...props
 }) => {
   return (
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+    <button
       className={`
         ${buttonVariants[variant]}
         ${sizeVariants[size]}
-        rounded-lg font-bold transition-colors duration-200
+        rounded-lg font-bold transition-all duration-200
+        hover:scale-105 active:scale-95 transform
         ${className}
       `}
       {...props}
     >
       {children}
-    </motion.button>
+    </button>
   );
 };

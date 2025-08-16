@@ -8,7 +8,6 @@ import { ScoreBoard } from '@/components/game/ScoreBoard';
 import { ReviewSection } from '@/components/game/ReviewSection';
 import { CreditsScreen } from '@/components/screens/CreditsScreen';
 import { audioManager } from '@/lib/audio';
-import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -34,12 +33,8 @@ function TitleScreen() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center bg-white p-12 rounded-2xl shadow-2xl max-w-2xl"
-      >
+      <div className="text-center bg-white p-12 rounded-2xl shadow-2xl max-w-2xl animate-fade-in">
+      
         <h1 className="text-6xl font-bold mb-8 text-blue-900">
           <ruby>分数<rt>ぶんすう</rt></ruby>マスター
         </h1>
@@ -68,7 +63,7 @@ function TitleScreen() {
             </Button>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -105,10 +100,8 @@ function LevelSelectScreen() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="w-full max-w-4xl bg-white p-8 rounded-2xl shadow-2xl"
+      <div
+        className="w-full max-w-4xl bg-white p-8 rounded-2xl shadow-2xl animate-fade-in"
       >
         <h2 className="text-4xl font-bold text-center mb-12 text-blue-900">
           レベルを<ruby>選択<rt>せんたく</rt></ruby>してください
@@ -116,12 +109,10 @@ function LevelSelectScreen() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {levels.map((level, index) => (
-            <motion.div
+            <div
               key={level.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className={`${level.color} rounded-xl p-6 text-white cursor-pointer hover:scale-105 transition-transform`}
+              className={`${level.color} rounded-xl p-6 text-white cursor-pointer hover:scale-105 transition-transform animate-slide-up`}
+              style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => startGame(level.id)}
             >
               <div className="text-5xl text-center mb-4">{level.icon}</div>
@@ -129,7 +120,7 @@ function LevelSelectScreen() {
                 <ruby>{level.title}<rt>{level.ruby}</rt></ruby>
               </h3>
               <p className="text-center text-white/90">{level.description}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
 
@@ -141,7 +132,7 @@ function LevelSelectScreen() {
             <ruby>戻<rt>もど</rt></ruby>る
           </Button>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -336,10 +327,8 @@ function ResultScreen() {
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="bg-white rounded-2xl shadow-2xl p-12 text-center"
+        <div
+          className="bg-white rounded-2xl shadow-2xl p-12 text-center animate-fade-in"
         >
           <h2 className="text-4xl font-bold mb-8 text-blue-900">
             ゲーム<ruby>終了<rt>しゅうりょう</rt></ruby>
@@ -398,7 +387,7 @@ function ResultScreen() {
               タイトルへ
             </Button>
           </div>
-        </motion.div>
+        </div>
 
         {/* 間違えた問題の振り返り */}
         <ReviewSection wrongAnswers={wrongAnswers} />
