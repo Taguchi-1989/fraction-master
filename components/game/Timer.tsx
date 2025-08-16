@@ -1,7 +1,6 @@
 'use client';
 
 import { FC, useEffect } from 'react';
-import { motion } from 'framer-motion';
 
 interface TimerProps {
   timeRemaining: number;
@@ -36,13 +35,11 @@ export const Timer: FC<TimerProps> = ({
       </div>
       
       <div className="w-full h-6 bg-gray-200 rounded-full overflow-hidden">
-        <motion.div
-          className={`h-full ${
+        <div
+          className={`h-full transition-all duration-500 ${
             isWarning ? 'bg-red-500' : percentage > 50 ? 'bg-green-500' : 'bg-yellow-500'
           }`}
-          initial={{ width: '100%' }}
-          animate={{ width: `${percentage}%` }}
-          transition={{ duration: 0.5 }}
+          style={{ width: `${percentage}%` }}
         />
       </div>
     </div>
