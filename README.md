@@ -132,4 +132,4 @@ npm run validate-questions
 
 ---
 
-**最終更新**: 2025年8月16日
+**最終更新**: 2025年8月16日# Updated for Vercel deployment
