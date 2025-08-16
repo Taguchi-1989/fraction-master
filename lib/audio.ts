@@ -197,6 +197,21 @@ export class AudioManager {
   isBGMPlaying(): boolean {
     return this.isBgmPlaying;
   }
+
+  // ゲーム終了時の音声再生（「よくできたね」）
+  playGoodJobSound() {
+    if (!this.isEnabled) return;
+    
+    try {
+      const audio = new Audio('/audio/speech.wav');
+      audio.volume = 0.7;
+      audio.play().catch(error => {
+        console.warn('音声再生に失敗しました:', error);
+      });
+    } catch (error) {
+      console.warn('音声ファイルの読み込みに失敗しました:', error);
+    }
+  }
 }
 
 // シングルトンインスタンスをエクスポート

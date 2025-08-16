@@ -341,10 +341,18 @@ function ResultScreen() {
     ? Math.round((correctAnswers / questionsAnswered) * 100)
     : 0;
 
-  // ゲーム完了音を再生（一度だけ）
+  // ゲーム完了音と音声再生（一度だけ）
   useEffect(() => {
     audioManager.playGameCompleteSound();
-  }, []);
+    
+    // 30点以上の場合は「よくできたね」音声を再生
+    if (score >= 30) {
+      // ファンファーレの後に音声を再生
+      setTimeout(() => {
+        audioManager.playGoodJobSound();
+      }, 1500); // 1.5秒後に再生
+    }
+  }, [score]);
 
   const getMessage = () => {
     if (accuracy >= 90) return '素晴らしい成績です！';
