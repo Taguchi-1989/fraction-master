@@ -132,6 +132,60 @@ export const CreditsScreen: FC = () => {
             </div>
           </div>
 
+          {/* AI・プラットフォーム情報 */}
+          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl">
+            <h2 className="text-2xl font-bold text-center text-indigo-800 mb-4">
+              AI・プラットフォーム<ruby>情報<rt>じょうほう</rt></ruby>
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-700 mb-3">
+                  <ruby>音声<rt>おんせい</rt></ruby>・BGM<ruby>生成<rt>せいせい</rt></ruby>
+                </h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                    Google Vertex AI (<ruby>音声<rt>おんせい</rt></ruby><ruby>合成<rt>ごうせい</rt></ruby>)
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    BGM<ruby>自動<rt>じどう</rt></ruby><ruby>生成<rt>せいせい</rt></ruby>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                    <ruby>効果音<rt>こうかおん</rt></ruby><ruby>最適化<rt>さいてきか</rt></ruby>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-700 mb-3">
+                  <ruby>使用<rt>しよう</rt></ruby>API・<ruby>著作権<rt>ちょさくけん</rt></ruby>
+                </h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    Vertex AI Text-to-Speech API
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <ruby>生成<rt>せいせい</rt></ruby><ruby>音声<rt>おんせい</rt></ruby>・BGM (<ruby>著作権<rt>ちょさくけん</rt></ruby><ruby>フリー<rt>フリー</rt></ruby>)
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>
+                    Web Audio API (<ruby>再生<rt>さいせい</rt></ruby><ruby>制御<rt>せいぎょ</rt></ruby>)
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-6 text-center">
+              <div className="bg-white p-4 rounded-lg border-2 border-indigo-200">
+                <p className="text-gray-700 text-sm">
+                  <strong><ruby>注意<rt>ちゅうい</rt></ruby>:</strong> <ruby>使用<rt>しよう</rt></ruby>している<ruby>音声<rt>おんせい</rt></ruby>・BGM<ruby>素材<rt>そざい</rt></ruby>はすべてAI<ruby>生成<rt>せいせい</rt></ruby>による<ruby>著作権<rt>ちょさくけん</rt></ruby><ruby>フリー<rt>フリー</rt></ruby><ruby>素材<rt>そざい</rt></ruby>です
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* デプロイメント情報 */}
           <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-6 rounded-xl">
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">

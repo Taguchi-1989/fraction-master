@@ -1,4 +1,8 @@
 {
-  "framework": "nextjs",
-  "alias": ["fraction-master.vercel.app"]
+  "buildCommand": "npm run build",
+  "outputDirectory": "out",
+  "trailingSlash": false,
+  "images": {
+    "unoptimized": true
+  }
 }
